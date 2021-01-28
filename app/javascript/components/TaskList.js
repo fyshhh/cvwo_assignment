@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
 import moment from 'moment';
 
 export default class TaskList extends React.Component {
@@ -11,13 +12,15 @@ export default class TaskList extends React.Component {
 
         return tasks.map(task => (
             <li key={task.id}>
-                {task.date}
-                {', '}
-                {moment(task.time).format('hh:mmA')}
-                {' - '}
-                {task.name}
+                <Link to={`/tasks/${task.id}`}>
+                    {task.date}
+                    {', '}
+                    {moment(task.time).format('hh:mmA')}
+                    {' - '}
+                    {task.name}
+                </Link>
             </li>
-        ))
+        ));
     }
 
     render() {
@@ -28,7 +31,7 @@ export default class TaskList extends React.Component {
             </section>
         );
     }
-}
+};
 
 TaskList.propTypes = {
     tasks: PropTypes.arrayOf(PropTypes.object)

@@ -9,7 +9,8 @@ require("@rails/activestorage").start()
 require("channels")
 
 import React from 'react';
-import ReactDOM from 'react-dom';
+import { render } from 'react-dom';
+import { BrowserRouter } from "react-router-dom";
 import App from '../components/App';
 
 // Uncomment to copy all static images under ../images to the output folder and reference
@@ -24,5 +25,10 @@ var ReactRailsUJS = require("react_ujs");
 ReactRailsUJS.useContext(componentRequireContext);
 
 document.addEventListener('DOMContentLoaded', () => {
-    ReactDOM.render(<App />, document.querySelector('#root'));
+    render(
+        <BrowserRouter>
+            <App />
+        </BrowserRouter>,
+        document.querySelector('#root')
+    );
 })
