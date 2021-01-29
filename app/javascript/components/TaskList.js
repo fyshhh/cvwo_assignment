@@ -30,7 +30,7 @@ export default class TaskList extends React.Component {
                     <h2 className="col">Tasks</h2>
                     <div className="col">
                         <Link to="/tasks/new">
-                            <button class="btn btn-primary">
+                            <button className="btn btn-primary">
                                 New Task
                             </button>
                         </Link>

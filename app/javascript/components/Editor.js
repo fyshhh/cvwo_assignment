@@ -7,6 +7,8 @@ import Task from './Task';
 import TaskList from './TaskList';
 import TaskForm from './TaskForm';
 import { Switch } from 'react-router-dom';
+import { success } from '../helpers/notifications';
+import { handleAjaxError } from "../helpers/helpers";
 
 export default class Editor extends React.Component {
     constructor(props) {
@@ -22,16 +24,14 @@ export default class Editor extends React.Component {
         axios
             .get('/api/tasks.json')
             .then(response => this.setState({ tasks: response.data }))
-            .catch((error) => {
-                console.log(error);
-            });
+            .catch(handleAjaxError);
     }
 
     addTask(newTask) {
         axios
             .post('/api/tasks.json', newTask)
             .then((response) => {
-                alert('Task added!');
+                success('Task added!');
                 const savedTask = response.data;
                 this.setState(prevState => ({
                     tasks: [...prevState.tasks, savedTask],
@@ -39,9 +39,7 @@ export default class Editor extends React.Component {
                 const { history } = this.props;
                 history.push(`/tasks/${savedTask.id}`);
             })
-            .catch((error) => {
-                console.log(error);
-            });
+            .catch(handleAjaxError);
     }
 
     deleteTask(taskId) {
@@ -51,7 +49,7 @@ export default class Editor extends React.Component {
                 .delete(`/api/tasks/${taskId}.json`)
                 .then((response) => {
                     if (response.status === 204) {
-                        alert('Task deleted!');
+                        success('Task deleted!');
                         const { history } = this.props;
                         history.push('/tasks');
 
@@ -59,9 +57,7 @@ export default class Editor extends React.Component {
                         this.setState({ tasks: tasks.filter(task => task.id !== taskId) });
                     }
                 })
-                .catch((error) => {
-                    console.log(error);
-                })
+                .catch(handleAjaxError);
         }
     }
 

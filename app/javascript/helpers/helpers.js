@@ -1,3 +1,5 @@
+import { error } from './notifications';
+
 export const isEmptyObject = obj => Object.keys(obj).length === 0;
 
 export const validateTask = (task) => {
@@ -17,4 +19,9 @@ export const validateTask = (task) => {
 
     console.log(task);
     return errors;
+}
+
+export const handleAjaxError = (err) => {
+    error('Something went wrong; please try again.');
+    console.warn(err);
 }
