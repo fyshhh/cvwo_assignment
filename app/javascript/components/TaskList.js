@@ -4,13 +4,31 @@ import { Link } from 'react-router-dom';
 import moment from 'moment';
 
 export default class TaskList extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            searchTerm: '',
+        };
+
+        this.searchInput = React.createRef();
+        this.updateSearchTerm = this.updateSearchTerm.bind(this);
+    }
+
+    updateSearchTerm() {
+        this.setState({ searchTerm: this.searchInput.current.value });
+    }
+
     renderTasks() {
-        const { tasks } = this.props;
+        const { active, tasks } = this.props;
+        const filteredTasks = tasks
+            .filter(tl => this.matchSearchTerm(tl))
+            .sort((a, b) => a.id - b.id);
+
         tasks.sort(
             (a, b) => a.id - b.id
         );
 
-        return tasks.map(task => (
+        return filteredTasks.map(task => (
             <li key={task.id}>
                 <Link to={`/tasks/${task.id}`}>
                     {task.date}
@@ -21,6 +39,17 @@ export default class TaskList extends React.Component {
                 </Link>
             </li>
         ));
+    }
+
+    matchSearchTerm(obj) {
+        const {
+            id, published, created_at, updated_at, ...rest
+        } = obj;
+        const { searchTerm } = this.state;
+
+        return Object.values(rest).some(
+            value => value.toLowerCase().indexOf(searchTerm.toLowerCase()) > -1,
+        );
     }
 
     render() {
@@ -36,6 +65,13 @@ export default class TaskList extends React.Component {
                         </Link>
                     </div>
                 </div>
+                <input
+                    className="search"
+                    placeholder="Search"
+                    type="text"
+                    ref={this.searchInput}
+                    onKeyUp={this.updateSearchTerm}
+                />
                 <ul className="row">{this.renderTasks()}</ul>
             </section>
         );
