@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { isEmptyObject, validateTask } from "../helpers/helpers";
 
 export default class TaskForm extends React.Component {
     constructor(props) {
@@ -17,8 +18,8 @@ export default class TaskForm extends React.Component {
     handleSubmit(t) {
         t.preventDefault();
         const { task } = this.state;
-        const errors = this.validateTask(task);
-        if (!this.isEmptyObject(errors)) {
+        const errors = validateTask(task);
+        if (!isEmptyObject(errors)) {
             this.setState({ errors });
         } else {
             console.log(task);
@@ -28,7 +29,7 @@ export default class TaskForm extends React.Component {
     renderErrors() {
         const { errors } = this.state;
 
-        if (this.isEmptyObject(errors)) {
+        if (isEmptyObject(errors)) {
             return null;
         }
 
@@ -42,29 +43,6 @@ export default class TaskForm extends React.Component {
                 </ul>
             </div>
         );
-    }
-
-    validateTask(task) {
-        const errors = {};
-
-        if (task.name === '') {
-            errors.name = 'You must enter a name for your task.';
-        }
-
-        if (task.description === '') {
-            errors.description = 'You must enter a description for your task.';
-        }
-
-        if (task.date === '') {
-            errors.date = 'You must enter a valid date.';
-        }
-
-        console.log(task);
-        return errors;
-    }
-
-    isEmptyObject(obj) {
-        return Object.keys(obj).length === 0;
     }
 
     handleInputChange(task) {
