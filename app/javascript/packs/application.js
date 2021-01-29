@@ -12,6 +12,10 @@ import React from 'react';
 import { render } from 'react-dom';
 import { BrowserRouter } from "react-router-dom";
 import App from '../components/App';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import $ from 'jquery';
+import Popper from 'popper.js';
+import 'bootstrap/dist/js/bootstrap.bundle.min';
 
 // Uncomment to copy all static images under ../images to the output folder and reference
 // them with the image_pack_tag helper in views (e.g <%= image_pack_tag 'rails.png' %>)

@@ -32,10 +32,12 @@ export default class Editor extends React.Component {
         const task = tasks.find(t => t.id === Number(taskId));
 
         return (
-            <div>
+            <div class="container-fluid">
                 <Header />
-                <TaskList tasks={tasks} />
-                <PropsRoute path='/tasks/:id' component={Task} task={task} />
+                <div class="row">
+                    <TaskList class="col-4" tasks={tasks} />
+                    <PropsRoute class="col-8" path='/tasks/:id' component={Task} task={task} />
+                </div>
             </div>
         );
     }
