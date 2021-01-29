@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
 import { isEmptyObject, validateTask } from "../helpers/helpers";
 
 export default class TaskForm extends React.Component {
@@ -65,14 +66,12 @@ export default class TaskForm extends React.Component {
 
     render() {
         const { task } = this.state;
+        const cancelURL = task.id ? `/tasks/${task.id}` : '/tasks';
+        const title = task.id ? task.name : 'New Task';
 
         return (
             <div>
-                {(task.name === "" && task.description === "" && task.date === "") ? (
-                    <h3>New Task</h3>
-                ) : (
-                    <h3>Edit Task</h3>
-                )}
+                <h3>{title}</h3>
                 {this.renderErrors()}
                 <form onSubmit={this.handleSubmit}>
                     <div>
@@ -123,6 +122,7 @@ export default class TaskForm extends React.Component {
                     </div>
                     <div className="form-actions">
                         <button type="submit">Save</button>
+                        <Link to={cancelURL}><button>Cancel</button></Link>
                     </div>
                 </form>
             </div>
