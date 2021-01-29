@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import { isEmptyObject, validateTask } from "../helpers/helpers";
+import TaskNotFound from "./TaskNotFound";
 
 export default class TaskForm extends React.Component {
     constructor(props) {
@@ -66,6 +67,10 @@ export default class TaskForm extends React.Component {
 
     render() {
         const { task } = this.state;
+        const { path } = this.props;
+
+        if (!task.id && path === '/tasks/:id/edit') return <TaskNotFound />;
+
         const cancelURL = task.id ? `/tasks/${task.id}` : '/tasks';
         const title = task.id ? task.name : 'New Task';
 
