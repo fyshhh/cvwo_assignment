@@ -1,8 +1,8 @@
 import React from 'react';
 
 const Header = () => (
-    <header class="row">
-        <h1 class="col text-center">Task Manager</h1>
+    <header className="row">
+        <h1 className="col text-center">Task Manager</h1>
     </header>
 );
 

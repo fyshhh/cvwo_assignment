@@ -5,6 +5,8 @@ import PropTypes from 'prop-types';
 import PropsRoute from './PropsRoute';
 import Task from './Task';
 import TaskList from './TaskList';
+import TaskForm from './TaskForm';
+import { Switch } from 'react-router-dom';
 
 export default class Editor extends React.Component {
     constructor(props) {
@@ -32,11 +34,18 @@ export default class Editor extends React.Component {
         const task = tasks.find(t => t.id === Number(taskId));
 
         return (
-            <div class="container-fluid">
+            <div className="container-fluid">
                 <Header />
-                <div class="row">
-                    <TaskList class="col-4" tasks={tasks} />
-                    <PropsRoute class="col-8" path='/tasks/:id' component={Task} task={task} />
+                <div className="row">
+                    <div className="col-4">
+                        <TaskList tasks={tasks} />
+                    </div>
+                    <div className="col-8">
+                        <Switch>
+                            <PropsRoute path='/tasks/new' component={TaskForm} />
+                            <PropsRoute path='/tasks/:id' component={Task} task={task} />
+                        </Switch>
+                    </div>
                 </div>
             </div>
         );

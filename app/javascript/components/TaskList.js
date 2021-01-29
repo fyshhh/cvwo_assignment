@@ -26,8 +26,11 @@ export default class TaskList extends React.Component {
     render() {
         return (
             <section>
-                <h2>Tasks</h2>
-                <ul>{this.renderTasks()}</ul>
+                <div className="row">
+                    <h2 className="col-6">Tasks</h2>
+                    <Link to="/tasks/new" className="col-6">New Task</Link>
+                </div>
+                <ul className="row">{this.renderTasks()}</ul>
             </section>
         );
     }
