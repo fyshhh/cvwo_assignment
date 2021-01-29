@@ -61,6 +61,21 @@ export default class Editor extends React.Component {
         }
     }
 
+    updateTask(updatedTask) {
+        axios
+            .put(`/api/tasks/${updatedTask.id}.json`, updatedTask)
+            .then(() => {
+                success('Task updated!');
+                const { tasks } = this.state;
+                const idx = tasks.findIndex(task => task.id === updatedTask.id);
+                tasks[idx] = updatedTask;
+                const { history } = this.props;
+                history.push(`/tasks/${updatedTask.id}`);
+                this.setState({ tasks });
+            })
+            .catch(handleAjaxError);
+    }
+
     render() {
         const { tasks } = this.state;
         if (tasks === null) return null;
@@ -78,8 +93,9 @@ export default class Editor extends React.Component {
                     </div>
                     <div className="col-8">
                         <Switch>
-                            <PropsRoute path='/tasks/new' component={TaskForm} onSubmit={this.addTask}/>
-                            <PropsRoute path='/tasks/:id' component={Task} task={task} onDelete={this.deleteTask}/>
+                            <PropsRoute path='/tasks/new' component={TaskForm} onSubmit={this.addTask} />
+                            <PropsRoute path='/tasks/:id/edit' component={TaskForm} task={task} onSubmit={this.updateTask} />
+                            <PropsRoute path='/tasks/:id' component={Task} task={task} onDelete={this.deleteTask} />
                         </Switch>
                     </div>
                 </div>

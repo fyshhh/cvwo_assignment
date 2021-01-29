@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import moment from 'moment';
+import { Link } from 'react-router-dom';
 
 const Task = ({ task, onDelete }) => (
     <div>
@@ -10,7 +11,14 @@ const Task = ({ task, onDelete }) => (
                 {', '}
                 {moment(task.time).subtract(8, 'hours').format('hh:mmA')}
             </h4>
-            <div className="col-4">
+            <div className="col">
+                <Link to={`/tasks/${task.id}/edit`}>
+                    <button className="btn btn-primary">
+                        Edit Task
+                    </button>
+                </Link>
+            </div>
+            <div className="col-2">
                 <button className="delete btn btn-danger" type="button" onClick={() => onDelete(task.id)}>
                     Delete Task
                 </button>

@@ -59,34 +59,66 @@ export default class TaskForm extends React.Component {
         }));
     }
 
+    componentWillReceiveProps({ task }) {
+        this.setState({ task });
+    }
+
     render() {
+        const { task } = this.state;
+
         return (
             <div>
-                <h2>New Task</h2>
+                {(task.name === "" && task.description === "" && task.date === "") ? (
+                    <h3>New Task</h3>
+                ) : (
+                    <h3>Edit Task</h3>
+                )}
                 {this.renderErrors()}
                 <form onSubmit={this.handleSubmit}>
                     <div>
                         <label htmlFor="name">
                             <strong>Name:</strong>
-                            <input type="text" name="name" onChange={this.handleInputChange} />
+                            <input
+                                type="text"
+                                name="name"
+                                onChange={this.handleInputChange}
+                                value={task.name}
+                            />
                         </label>
                     </div>
                     <div>
                         <label htmlFor="description">
                             <strong>Description:</strong>
-                            <textarea cols="30" rows="10" name="description" onChange={this.handleInputChange} />
+                            <textarea
+                                // cols="30"
+                                // rows="10"
+                                className="form-control"
+                                name="description"
+                                onChange={this.handleInputChange}
+                                value={task.description}
+                            />
                         </label>
                     </div>
                     <div>
                         <label htmlFor="date">
                             <strong>Date:</strong>
-                            <input type="date" name="date" onChange={this.handleInputChange} />
+                            <input
+                                type="date"
+                                name="date"
+                                onChange={this.handleInputChange}
+                                value={task.date}
+                            />
                         </label>
                     </div>
                     <div>
                         <label htmlFor="time">
                             <strong>Time:</strong>
-                            <input type="time" name="time" onChange={this.handleInputChange} />
+                            <input
+                                type="time"
+                                name="time"
+                                onChange={this.handleInputChange}
+                                value={task.time}
+                            />
                         </label>
                     </div>
                     <div className="form-actions">
