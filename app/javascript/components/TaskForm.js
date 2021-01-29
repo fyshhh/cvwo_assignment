@@ -19,9 +19,9 @@ export default class TaskForm extends React.Component {
         t.preventDefault();
         const { task } = this.state;
         const errors = validateTask(task);
-        if (!isEmptyObject(errors)) {
-            this.setState({ errors });
-        } else {
+
+        this.setState({ errors });
+        if (isEmptyObject(errors)) {
             const { onSubmit } = this.props;
             onSubmit(task);
         }

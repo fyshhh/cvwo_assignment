@@ -14,6 +14,7 @@ export default class Editor extends React.Component {
         this.state = {
             tasks: null,
         };
+        this.addTask = this.addTask.bind(this);
     }
 
     componentDidMount() {
