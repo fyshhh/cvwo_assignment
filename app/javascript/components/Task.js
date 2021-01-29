@@ -1,13 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import moment from "moment";
+import moment from 'moment';
 
 const Task = ({ task }) => (
     <div>
         <h2>
             {task.date}
             {', '}
-            {moment(task.time).format('hh:mmA')}
+            {moment(task.time).subtract(8, 'hours').format('hh:mmA')}
         </h2>
         <ul>
             <li>
@@ -24,7 +24,7 @@ const Task = ({ task }) => (
             </li>
             <li>
                 <strong>Time: </strong>
-                {moment(task.time).format('hh:mmA')}
+                {moment(task.time).subtract(8, 'hours').format('hh:mmA')}
             </li>
         </ul>
     </div>

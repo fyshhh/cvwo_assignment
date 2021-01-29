@@ -15,7 +15,7 @@ export default class TaskList extends React.Component {
                 <Link to={`/tasks/${task.id}`}>
                     {task.date}
                     {', '}
-                    {moment(task.time).format('hh:mmA')}
+                    {moment(task.time).subtract(8, 'hours').format('hh:mmA')}
                     {' - '}
                     {task.name}
                 </Link>

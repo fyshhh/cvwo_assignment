@@ -22,7 +22,8 @@ export default class TaskForm extends React.Component {
         if (!isEmptyObject(errors)) {
             this.setState({ errors });
         } else {
-            console.log(task);
+            const { onSubmit } = this.props;
+            onSubmit(task);
         }
     }
 
@@ -98,7 +99,8 @@ export default class TaskForm extends React.Component {
 }
 
 TaskForm.propTypes = {
-    task: PropTypes.shape()
+    task: PropTypes.shape(),
+    onSubmit: PropTypes.func.isRequired
 }
 
 TaskForm.defaultProps = {

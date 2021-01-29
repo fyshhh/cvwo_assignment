@@ -25,6 +25,23 @@ export default class Editor extends React.Component {
             });
     }
 
+    addTask(newTask) {
+        axios
+            .post('/api/tasks.json', newTask)
+            .then((response) => {
+                alert('Task added!');
+                const savedTask = response.data;
+                this.setState(prevState => ({
+                    tasks: [...prevState.tasks, savedTask],
+                }));
+                const { history } = this.props;
+                history.push(`/tasks/${savedTask.id}`);
+            })
+            .catch((error) => {
+                console.log(error);
+            });
+    }
+
     render() {
         const { tasks } = this.state;
         if (tasks === null) return null;
@@ -42,7 +59,7 @@ export default class Editor extends React.Component {
                     </div>
                     <div className="col-8">
                         <Switch>
-                            <PropsRoute path='/tasks/new' component={TaskForm} />
+                            <PropsRoute path='/tasks/new' component={TaskForm} onSubmit={this.addTask}/>
                             <PropsRoute path='/tasks/:id' component={Task} task={task} />
                         </Switch>
                     </div>
@@ -53,7 +70,8 @@ export default class Editor extends React.Component {
 }
 
 Editor.propTypes = {
-    match: PropTypes.shape()
+    match: PropTypes.shape(),
+    history: PropTypes.shape({ push: PropTypes.func }).isRequired
 };
 
 Editor.defaultProps = {
