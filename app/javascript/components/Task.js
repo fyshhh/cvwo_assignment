@@ -2,13 +2,20 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import moment from 'moment';
 
-const Task = ({ task }) => (
+const Task = ({ task, onDelete }) => (
     <div>
-        <h2>
-            {task.date}
-            {', '}
-            {moment(task.time).subtract(8, 'hours').format('hh:mmA')}
-        </h2>
+        <div className="row">
+            <h4 className="col-8">
+                {task.date}
+                {', '}
+                {moment(task.time).subtract(8, 'hours').format('hh:mmA')}
+            </h4>
+            <div className="col-4">
+                <button className="delete btn btn-danger" type="button" onClick={() => onDelete(task.id)}>
+                    Delete Task
+                </button>
+            </div>
+        </div>
         <ul>
             <li>
                 <strong>Name: </strong>
@@ -31,7 +38,8 @@ const Task = ({ task }) => (
 );
 
 Task.propTypes = {
-    task: PropTypes.shape()
+    task: PropTypes.shape(),
+    onDelete: PropTypes.func.isRequired
 };
 
 Task.defaultProps = {

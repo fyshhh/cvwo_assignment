@@ -15,6 +15,7 @@ export default class Editor extends React.Component {
             tasks: null,
         };
         this.addTask = this.addTask.bind(this);
+        this.deleteTask = this.deleteTask.bind(this);
     }
 
     componentDidMount() {
@@ -43,6 +44,27 @@ export default class Editor extends React.Component {
             });
     }
 
+    deleteTask(taskId) {
+        const bool = window.confirm('Are you sure you want to delete this event?');
+        if (bool) {
+            axios
+                .delete(`/api/tasks/${taskId}.json`)
+                .then((response) => {
+                    if (response.status === 204) {
+                        alert('Task deleted!');
+                        const { history } = this.props;
+                        history.push('/tasks');
+
+                        const { tasks } = this.state;
+                        this.setState({ tasks: tasks.filter(task => task.id !== taskId) });
+                    }
+                })
+                .catch((error) => {
+                    console.log(error);
+                })
+        }
+    }
+
     render() {
         const { tasks } = this.state;
         if (tasks === null) return null;
@@ -61,7 +83,7 @@ export default class Editor extends React.Component {
                     <div className="col-8">
                         <Switch>
                             <PropsRoute path='/tasks/new' component={TaskForm} onSubmit={this.addTask}/>
-                            <PropsRoute path='/tasks/:id' component={Task} task={task} />
+                            <PropsRoute path='/tasks/:id' component={Task} task={task} onDelete={this.deleteTask}/>
                         </Switch>
                     </div>
                 </div>
