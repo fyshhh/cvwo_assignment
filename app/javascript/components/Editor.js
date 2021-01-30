@@ -18,6 +18,7 @@ export default class Editor extends React.Component {
         };
         this.addTask = this.addTask.bind(this);
         this.deleteTask = this.deleteTask.bind(this);
+        this.updateTask = this.updateTask.bind(this);
     }
 
     componentDidMount() {

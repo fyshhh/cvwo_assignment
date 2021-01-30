@@ -38,7 +38,7 @@ export default class TaskForm extends React.Component {
 
         return (
             <div className="errors">
-                <h3>The following errors prohibited the task from being saved:</h3>
+                <h5>The following errors prohibited the task from being saved:</h5>
                 <ul>
                     {Object.values(errors).map(error => (
                         <li key={error}>{error}</li>
@@ -47,7 +47,6 @@ export default class TaskForm extends React.Component {
             </div>
         );
     }
-
 
     updateTask(key, value) {
         this.setState(prevState => ({
