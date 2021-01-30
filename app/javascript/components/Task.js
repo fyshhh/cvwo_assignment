@@ -8,9 +8,6 @@ import { timeFormats } from '../helpers/helpers';
 const Task = ({ task, onDelete }) => {
     if (!task) return <TaskNotFound />;
 
-    console.log(task.time);
-    console.log(moment(task.time, timeFormats, true).format('hh:mmA'));
-
     return (
         <div>
             <div className="row">
