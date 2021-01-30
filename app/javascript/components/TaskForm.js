@@ -48,17 +48,22 @@ export default class TaskForm extends React.Component {
         );
     }
 
+
+    updateTask(key, value) {
+        this.setState(prevState => ({
+            task: {
+                ...prevState.task,
+                [key]: value
+            }
+        }));
+    }
+
     handleInputChange(task) {
         const { target } = task;
         const { name } = target;
         const value = target.type === 'checkbox' ? target.checked : target.value;
 
-        this.setState(prevState => ({
-            task: {
-                ...prevState.task,
-                [name]: value,
-            },
-        }));
+        this.updateTask(name, value)
     }
 
     componentWillReceiveProps({ task }) {

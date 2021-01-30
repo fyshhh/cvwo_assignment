@@ -22,10 +22,14 @@ export default class TaskList extends React.Component {
         const { activeId, tasks } = this.props;
         const filteredTasks = tasks
             .filter(tl => this.matchSearchTerm(tl))
-            .sort((a, b) => a.id - b.id);
+            .sort((a, b) => new Date(a.date).getTime() === new Date(b.date).getTime()
+                ? a.time.localeCompare(b.time)
+                : new Date(a.date) - new Date(b.date))
 
         tasks.sort(
-            (a, b) => a.id - b.id
+            (a, b) => new Date(a.date).getTime() === new Date(b.date).getTime()
+                ? a.time.localeCompare(b.time)
+                : new Date(a.date) - new Date(b.date)
         );
 
         return filteredTasks.map(task => (
@@ -69,6 +73,7 @@ export default class TaskList extends React.Component {
                     className="search"
                     placeholder="Search"
                     type="text"
+                    style={ { width: '85%' } }
                     ref={this.searchInput}
                     onKeyUp={this.updateSearchTerm}
                 />
