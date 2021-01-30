@@ -3,9 +3,13 @@ import PropTypes from 'prop-types';
 import moment from 'moment';
 import { Link } from 'react-router-dom';
 import TaskNotFound from "./TaskNotFound";
+import { timeFormats } from '../helpers/helpers';
 
 const Task = ({ task, onDelete }) => {
     if (!task) return <TaskNotFound />;
+
+    console.log(task.time);
+    console.log(moment(task.time, timeFormats, true).format('hh:mmA'));
 
     return (
         <div>
@@ -38,7 +42,7 @@ const Task = ({ task, onDelete }) => {
                 </li>
                 <li>
                     <strong>Time: </strong>
-                    {moment(task.time).subtract(8, 'hours').format('hh:mmA')}
+                    {moment(task.time, 'HH:mm').format('hh:mmA')}
                 </li>
             </ul>
         </div>

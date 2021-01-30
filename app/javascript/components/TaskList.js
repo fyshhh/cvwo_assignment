@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import moment from 'moment';
+import {timeFormats} from "../helpers/helpers";
 
 export default class TaskList extends React.Component {
     constructor(props) {
@@ -37,7 +38,7 @@ export default class TaskList extends React.Component {
                 <Link to={`/tasks/${task.id}`}>
                     {task.date}
                     {', '}
-                    {moment(task.time).subtract(8, 'hours').format('hh:mmA')}
+                    {moment(task.time, 'HH:mm').format('hh:mmA')}
                     {' - '}
                     {task.name}
                 </Link>

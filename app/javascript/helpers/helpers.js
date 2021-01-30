@@ -1,4 +1,5 @@
 import { error } from './notifications';
+import moment from 'moment';
 
 export const isEmptyObject = obj => Object.keys(obj).length === 0;
 
