@@ -10,29 +10,24 @@ const Task = ({ task, onDelete }) => {
     return (
         <div>
             <div className="row">
-                <h4 className="col-8">
-                    {task.date}
-                    {', '}
-                    {moment(task.time).subtract(8, 'hours').format('hh:mmA')}
-                </h4>
-                <div className="col">
+                <h3 className="col-9">
+                    {task.name}
+                </h3>
+                <div className="col-1">
                     <Link to={`/tasks/${task.id}/edit`}>
-                        <button className="btn btn-primary">
-                            Edit Task
+                        <button className="btn btn-warning">
+                            Edit
                         </button>
                     </Link>
                 </div>
-                <div className="col-2">
+                <div className="col-1">
                     <button className="delete btn btn-danger" type="button" onClick={() => onDelete(task.id)}>
-                        Delete Task
+                        Delete
                     </button>
                 </div>
             </div>
+            <br />
             <ul>
-                <li>
-                    <strong>Name: </strong>
-                    {task.name}
-                </li>
                 <li>
                     <strong>Description: </strong>
                     {task.description}

@@ -19,7 +19,7 @@ export default class TaskList extends React.Component {
     }
 
     renderTasks() {
-        const { active, tasks } = this.props;
+        const { activeId, tasks } = this.props;
         const filteredTasks = tasks
             .filter(tl => this.matchSearchTerm(tl))
             .sort((a, b) => a.id - b.id);
@@ -59,7 +59,7 @@ export default class TaskList extends React.Component {
                     <h2 className="col">Tasks</h2>
                     <div className="col">
                         <Link to="/tasks/new">
-                            <button className="btn btn-primary">
+                            <button className="btn btn-success">
                                 New Task
                             </button>
                         </Link>
@@ -79,9 +79,11 @@ export default class TaskList extends React.Component {
 };
 
 TaskList.propTypes = {
+    activeId: PropTypes.number,
     tasks: PropTypes.arrayOf(PropTypes.object)
 };
 
 TaskList.defaultProps = {
+    activeId: undefined,
     tasks: []
 };

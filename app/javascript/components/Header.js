@@ -1,8 +1,8 @@
 import React from 'react';
 
 const Header = () => (
-    <header className="row">
-        <h1 className="col text-center">Task Manager</h1>
+    <header className="row" style={{height: 100 + 'px'}}>
+        <h1 className="col text-center align-text-bottom" style={{height: 45 + 'px'}}>Task Manager</h1>
     </header>
 );
 

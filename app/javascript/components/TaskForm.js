@@ -79,55 +79,53 @@ export default class TaskForm extends React.Component {
                 <h3>{title}</h3>
                 {this.renderErrors()}
                 <form onSubmit={this.handleSubmit}>
-                    <div>
-                        <label htmlFor="name">
-                            <strong>Name:</strong>
-                            <input
-                                type="text"
-                                name="name"
-                                onChange={this.handleInputChange}
-                                value={task.name}
-                            />
-                        </label>
+                    <div className="form-floating">
+                        <strong>Name:</strong>
+                        <input
+                            type="text"
+                            className="form-control"
+                            name="name"
+                            onChange={this.handleInputChange}
+                            value={task.name}
+                        />
                     </div>
+                    <br />
                     <div>
-                        <label htmlFor="description">
-                            <strong>Description:</strong>
-                            <textarea
-                                // cols="30"
-                                // rows="10"
-                                className="form-control"
-                                name="description"
-                                onChange={this.handleInputChange}
-                                value={task.description}
-                            />
-                        </label>
+                        <strong>Description:</strong>
+                        <textarea
+                            rows="8"
+                            className="form-control"
+                            name="description"
+                            onChange={this.handleInputChange}
+                            value={task.description}
+                        />
                     </div>
+                    <br />
                     <div>
-                        <label htmlFor="date">
-                            <strong>Date:</strong>
-                            <input
-                                type="date"
-                                name="date"
-                                onChange={this.handleInputChange}
-                                value={task.date}
-                            />
-                        </label>
+                        <strong>Date:</strong>
+                        <br />
+                        <input
+                            type="date"
+                            name="date"
+                            onChange={this.handleInputChange}
+                            value={task.date}
+                        />
                     </div>
+                    <br />
                     <div>
-                        <label htmlFor="time">
-                            <strong>Time:</strong>
-                            <input
-                                type="time"
-                                name="time"
-                                onChange={this.handleInputChange}
-                                value={task.time}
-                            />
-                        </label>
+                        <strong>Time:</strong>
+                        <br />
+                        <input
+                            type="time"
+                            name="time"
+                            onChange={this.handleInputChange}
+                            value={task.time}
+                        />
                     </div>
+                    <br />
                     <div className="form-actions">
-                        <button type="submit">Save</button>
-                        <Link to={cancelURL}><button>Cancel</button></Link>
+                        <button type="submit" className="btn btn-success mr-2">Save</button>
+                        <Link to={cancelURL}><button className="btn btn-danger">Cancel</button></Link>
                     </div>
                 </form>
             </div>

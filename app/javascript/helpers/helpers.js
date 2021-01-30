@@ -17,7 +17,10 @@ export const validateTask = (task) => {
         errors.date = 'You must enter a valid date.';
     }
 
-    console.log(task);
+    if (task.time === '') {
+        errors.date = 'You must enter a valid time.';
+    }
+
     return errors;
 }
 

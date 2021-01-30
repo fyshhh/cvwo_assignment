@@ -85,7 +85,7 @@ export default class Editor extends React.Component {
         const task = tasks.find(t => t.id === Number(taskId));
 
         return (
-            <div className="container-fluid">
+            <div className="container">
                 <Header />
                 <div className="row">
                     <div className="col-4">
