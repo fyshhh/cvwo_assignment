@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import moment from 'moment';
 import { Link } from 'react-router-dom';
 import TaskNotFound from "./TaskNotFound";
-import { timeFormats } from '../helpers/helpers';
 
 const Task = ({ task, onDelete }) => {
     if (!task) return <TaskNotFound />;

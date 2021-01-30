@@ -2,7 +2,7 @@ import React from 'react';
 
 const Header = () => (
     <header className="row" style={{height: 100 + 'px'}}>
-        <h1 className="col text-center align-text-bottom" style={{height: 45 + 'px'}}>Task Manager</h1>
+        <h2 className="col text-center align-text-bottom" style={{height: 45 + 'px'}}>fysh's Task Manager</h2>
     </header>
 );
 
